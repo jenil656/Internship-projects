@@ -144,7 +144,32 @@ A feature-rich, modern weather application with stunning UI/UX, advanced animati
 2. Review the weather snapshot preview
 3. Click "Download Image" to save
 
-##  Customization
+
+##  Live Demo
+- Before contributing, explore the live version of the project to understand features, UI flow, and behavior:
+
+  - Live Demo (GitHub Pages)
+  ```bash
+  https://jenil656.github.io/Internship-projects/weather/
+  ```
+  - This helps ensure your changes align with the existing design and functionality.
+
+## How to Contribute
+
+- 1. Fork the Repository
+     - Click the Fork button on GitHub to create your own copy of the project.
+
+- 2. Clone Your Fork
+  ```bash
+        git clone https://github.com/your-username/Internship-projects.git
+        cd Internship-projects/weather 
+    ```
+- 3. Create a New Branch
+    - Always work on a separate branch:
+      ```bash
+          git checkout -b feature/your-feature-name
+      ```
+
 
 ### Changing Colors
 Edit CSS variables in `style.css`:
