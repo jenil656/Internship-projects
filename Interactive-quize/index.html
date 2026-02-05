@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Interactive Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="screen-container">
+        <div class="welcome-card animate-slide-up">
+            <div class="welcome-header">
+                <h1 class="welcome-title">🎓 Ultimate Quiz Challenge</h1>
+                <p class="welcome-subtitle">Test your knowledge with this interactive experience</p>
+            </div>
+
+            <!-- Difficulty Selection -->
+            <div class="difficulty-selection">
+                <h3>Select Difficulty</h3>
+                <div class="difficulty-buttons">
+                    <button class="difficulty-btn" data-difficulty="easy">
+                        <span class="diff-icon">🌱</span>
+                        <span class="diff-label">Easy</span>
+                        <span class="diff-desc">10 seconds per question</span>
+                    </button>
+                    <button class="difficulty-btn active" data-difficulty="medium">
+                        <span class="diff-icon">⚡</span>
+                        <span class="diff-label">Medium</span>
+                        <span class="diff-desc">15 seconds per question</span>
+                    </button>
+                    <button class="difficulty-btn" data-difficulty="hard">
+                        <span class="diff-icon">🔥</span>
+                        <span class="diff-label">Hard</span>
+                        <span class="diff-desc">10 seconds + harder questions</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Mode Selection -->
+            <div class="mode-selection">
+                <h3>Quiz Mode</h3>
+                <div class="mode-toggle">
+                    <label class="mode-option">
+                        <input type="radio" name="quiz-mode" value="normal" checked>
+                        <span class="mode-card">
+                            <span class="mode-icon">📝</span>
+                            <span class="mode-name">Normal Mode</span>
+                        </span>
+                    </label>
+                    <label class="mode-option">
+                        <input type="radio" name="quiz-mode" value="confidence">
+                        <span class="mode-card">
+                            <span class="mode-icon">🧠</span>
+                            <span class="mode-name">Confidence Mode</span>
+                        </span>
+                    </label>
+                    <label class="mode-option">
+                        <input type="radio" name="quiz-mode" value="stress-free">
+                        <span class="mode-card">
+                            <span class="mode-icon">🧘</span>
+                            <span class="mode-name">Stress-Free Mode</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <button id="start-quiz-btn" class="start-btn pulse-animation">
+                Start Quiz 🚀
+            </button>
+
+            <div class="high-scores-preview">
+                <h4>🏆 High Scores</h4>
+                <ul id="preview-scores"></ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="quiz-screen" class="screen-container hidden">
+        <div class="quiz-container">
+            <!-- Header -->
+            <header class="quiz-header">
+                <div class="header-top">
+                    <h1 id="quiz-title">Interactive Web Quiz</h1>
+                    <div class="score-display">
+                        <span class="score-label">Score</span>
+                        <span id="current-score">0</span>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div id="progress-bar" class="progress-bar"></div>
+                    <div class="progress-text">
+                        Question <span id="current-question-num">1</span> / <span id="total-questions">10</span>
+                    </div>
+                </div>
+
+                <!-- Streak Indicator -->
+                <div id="streak-container" class="streak-container hidden">
+                    <span class="streak-icon">🔥</span>
+                    <span class="streak-text">Streak: <span id="streak-count">0</span></span>
+                    <span class="streak-multiplier">×<span id="multiplier">1</span></span>
+                </div>
+
+                <!-- Power-ups -->
+                <div class="powerups-container">
+                    <button id="hint-powerup" class="powerup-btn" title="Use Hint (Costs 1 token)">
+                        💡 <span class="powerup-count" id="hint-count">2</span>
+                    </button>
+                    <button id="skip-powerup" class="powerup-btn" title="Skip Question (Costs 1 token)">
+                        ⏭️ <span class="powerup-count" id="skip-count">1</span>
+                    </button>
+                    <button id="time-powerup" class="powerup-btn" title="Add 10 seconds (Costs 1 token)">
+                        ⏱️ <span class="powerup-count" id="time-count">1</span>
+                    </button>
+                </div>
+
+                <!-- Timer -->
+                <div class="timer-container">
+                    <svg class="timer-ring" width="80" height="80">
+                        <circle class="timer-ring-circle" stroke="#e0e0e0" stroke-width="6" fill="transparent" r="34" cx="40" cy="40"/>
+                        <circle id="timer-progress" class="timer-ring-progress" stroke="url(#gradient)" stroke-width="6" fill="transparent" r="34" cx="40" cy="40"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="timer-text">
+                        <span id="time-count">15</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Quiz Body -->
+            <div id="quiz-body" class="quiz-body">
+                <!-- Questions will be dynamically inserted here -->
+            </div>
+
+            <!-- Confidence Slider (for confidence mode) -->
+            <div id="confidence-container" class="confidence-container hidden">
+                <label for="confidence-slider">How confident are you?</label>
+                <div class="confidence-slider-wrapper">
+                    <span class="confidence-emoji">😐</span>
+                    <input type="range" id="confidence-slider" min="1" max="3" value="2" step="1">
+                    <span class="confidence-label">Somewhat sure</span>
+                </div>
+            </div>
+
+            <!-- Feedback -->
+            <div id="feedback" class="feedback-container hidden"></div>
+
+            <!-- Explanation -->
+            <div id="explanation" class="explanation-container hidden"></div>
+
+            <!-- Footer Buttons -->
+            <div class="quiz-footer">
+                <button id="submit-btn" class="btn btn-primary">
+                    Check Answer
+                </button>
+                <button id="next-btn" class="btn btn-success hidden">
+                    Next Question →
+                </button>
+            </div>
+
+            <!-- Attention Warning -->
+            <div id="attention-warning" class="attention-warning hidden">
+                <span class="warning-icon">👀</span>
+                <span class="warning-text">Still there? Stay focused!</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="result-screen" class="screen-container hidden">
+        <div class="result-container">
+            <div class="result-header animate-slide-down">
+                <h2 class="result-title" id="result-title">Quiz Complete!</h2>
+                <div class="result-score-circle">
+                    <svg width="200" height="200">
+                        <circle class="score-bg" cx="100" cy="100" r="90" fill="none" stroke="#e0e0e0" stroke-width="12"/>
+                        <circle id="score-circle" class="score-progress" cx="100" cy="100" r="90" fill="none" stroke="url(#score-gradient)" stroke-width="12" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="score-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="score-text-center">
+                        <div class="final-score" id="score-text">0/10</div>
+                        <div class="score-percentage" id="score-percentage">0%</div>
+                    </div>
+                </div>
+                <p class="result-message" id="result-message"></p>
+            </div>
+
+            <!-- Analytics Section -->
+            <div class="analytics-section">
+                <h3>📊 Performance Analytics</h3>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-label">Avg Time</div>
+                        <div class="stat-value" id="avg-time">0s</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-label">Fastest</div>
+                        <div class="stat-value" id="fastest-time">0s</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🐌</div>
+                        <div class="stat-label">Slowest</div>
+                        <div class="stat-value" id="slowest-time">0s</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-label">Best Streak</div>
+                        <div class="stat-value" id="best-streak">0</div>
+                    </div>
+                </div>
+
+                <!-- Topic Performance -->
+                <div class="topic-performance">
+                    <h4>Topic Breakdown</h4>
+                    <div id="topic-breakdown"></div>
+                </div>
+
+                <!-- Heatmap -->
+                <div class="heatmap-section">
+                    <h4>Question Difficulty Heatmap</h4>
+                    <div id="question-heatmap" class="heatmap-grid"></div>
+                </div>
+
+                <!-- Answer Changes -->
+                <div class="answer-changes" id="answer-changes-section">
+                    <h4>Answer Changes</h4>
+                    <ul id="answer-changes-list"></ul>
+                </div>
+            </div>
+
+            <!-- Leaderboard -->
+            <div class="leaderboard-section">
+                <h3>🏆 High Scores</h3>
+                <div class="leaderboard-tabs">
+                    <button class="tab-btn active" data-tab="all">All Time</button>
+                    <button class="tab-btn" data-tab="today">Today</button>
+                </div>
+                <ul id="score-list" class="score-list"></ul>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="result-actions">
+                <button id="review-btn" class="btn btn-secondary">
+                    📝 Review Answers
+                </button>
+                <button id="retry-btn" class="btn btn-primary">
+                    🔄 Try Again
+                </button>
+                <button id="share-btn" class="btn btn-accent">
+                    📤 Share Results
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Screen -->
+    <div id="review-screen" class="screen-container hidden">
+        <div class="review-container">
+            <div class="review-header">
+                <h2>📝 Answer Review</h2>
+                <button id="close-review-btn" class="btn-close">✕</button>
+            </div>
+            <div id="review-content" class="review-content">
+                <!-- Review items will be inserted here -->
+            </div>
+            <button id="back-to-results-btn" class="btn btn-primary">
+                ← Back to Results
+            </button>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="notification-toast hidden">
+        <span class="toast-icon"></span>
+        <span class="toast-message"></span>
+    </div>
+
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

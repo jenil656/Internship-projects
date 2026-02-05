@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-neon">
+    <!-- Animated Background with Parallax -->
+    <div class="bg-animation">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="floating-particles"></div>
+    </div>
+
+    <!-- Top Action Buttons Row -->
+    <div class="top-controls">
+        <div id="restart-icon-btn" class="icon-btn" title="Restart Round">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+            </svg>
+        </div>
+
+        <div id="undo-btn" class="icon-btn" title="Undo Last Move">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/>
+            </svg>
+        </div>
+
+        <div id="sound-toggle-btn" class="icon-btn" title="Toggle Sound">
+            <svg id="sound-icon" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
+        </div>
+
+        <div id="music-toggle-btn" class="icon-btn" title="Toggle Music">
+            <svg id="music-icon" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+            </svg>
+        </div>
+
+        <div id="theme-cycle-btn" class="icon-btn" title="Change Theme">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 3a9 9 0 0 0 0 18c.83 0 1.5-.67 1.5-1.5 0-.32-.13-.62-.33-.85-.22-.25-.37-.59-.37-.96 0-.83.67-1.5 1.5-1.5.37 0 .71.15.96.37.23.2.53.33.85.33 1.66 0 3-1.34 3-3 0-1.25-.8-2.31-1.91-2.77-.32-.13-.59-.36-.73-.67-.14-.31-.14-.67 0-.98.14-.31.41-.54.73-.67A2.99 2.99 0 0 0 19.5 6 9 9 0 0 0 12 3zm-4.25 5.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zm-1 5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zm4.5 4a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zm3.5-2.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"/>
+            </svg>
+        </div>
+
+        <div id="history-toggle-btn" class="icon-btn" title="Game History">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
+            </svg>
+        </div>
+
+        <div id="achievements-btn" class="icon-btn" title="Achievements">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24l-7.19-.61L12 2z"/>
+            </svg>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Game Title with Animation -->
+        <h1 class="game-title">
+            <span class="title-word">TIC</span>
+            <span class="title-word highlight">TAC</span>
+            <span class="title-word">TOE</span>
+        </h1>
+
+        <!-- Tournament Progress (Best of 5) -->
+        <div id="tournament-mode" class="tournament-container" style="display: none;">
+            <div class="tournament-title">🏆 Best of 5 Tournament 🏆</div>
+            <div class="tournament-progress">
+                <div class="player-wins">
+                    <span class="player-label" id="p1-label">Player 1</span>
+                    <div class="win-dots" id="p1-wins">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+                <div class="vs-divider">VS</div>
+                <div class="player-wins">
+                    <span class="player-label" id="p2-label">Player 2</span>
+                    <div class="win-dots" id="p2-wins">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Bar -->
+        <div class="settings-bar">
+            <div class="settings-row">
+                <button id="mode-toggle" class="mode-btn">
+                    <span class="btn-icon">👥</span> PvP
+                </button>
+                <button id="tournament-toggle" class="mode-btn">
+                    <span class="btn-icon">🏆</span> Tournament
+                </button>
+                <button id="skins-btn" class="mode-btn">
+                    <span class="btn-icon">🎨</span> Skins
+                </button>
+            </div>
+
+            <!-- AI Difficulty Selector -->
+            <div id="ai-difficulty-container" class="difficulty-container" style="display: none;">
+                <label for="ai-difficulty">AI Difficulty:</label>
+                <select id="ai-difficulty" class="difficulty-select">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="impossible" selected>Impossible</option>
+                </select>
+            </div>
+
+            <div class="name-inputs">
+                <input type="text" id="p1-name" value="Player 1" class="name-field x-style" maxlength="12">
+                <span class="vs">VS</span>
+                <input type="text" id="p2-name" value="Player 2" class="name-field o-style" maxlength="12">
+            </div>
+        </div>
+
+        <!-- Scoreboard with Animation -->
+        <div class="scoreboard">
+            <div class="score-box x-score">
+                <div class="score-label">X</div>
+                <div class="score-value" id="score-x">0</div>
+            </div>
+            <div class="score-box draw-score">
+                <div class="score-label">Draws</div>
+                <div class="score-value" id="score-draw">0</div>
+            </div>
+            <div class="score-box o-score">
+                <div class="score-label">O</div>
+                <div class="score-value" id="score-o">0</div>
+            </div>
+        </div>
+        
+        <!-- Status with Turn Timer -->
+        <div class="status-container">
+            <div id="status" class="status">Game Start</div>
+            <div id="timer-bar" class="timer-bar" style="display: none;">
+                <div id="timer-fill" class="timer-fill"></div>
+            </div>
+        </div>
+
+        <!-- Game Board -->
+        <div class="game-wrapper">
+            <div class="game-board" id="board">
+                <div class="cell" data-index="0" tabindex="0"></div>
+                <div class="cell" data-index="1" tabindex="0"></div>
+                <div class="cell" data-index="2" tabindex="0"></div>
+                <div class="cell" data-index="3" tabindex="0"></div>
+                <div class="cell" data-index="4" tabindex="0"></div>
+                <div class="cell" data-index="5" tabindex="0"></div>
+                <div class="cell" data-index="6" tabindex="0"></div>
+                <div class="cell" data-index="7" tabindex="0"></div>
+                <div class="cell" data-index="8" tabindex="0"></div>
+            </div>
+            <div id="winning-line" class="winning-line"></div>
+        </div>
+
+        <!-- Control Buttons -->
+        <div class="control-buttons">
+            <button id="reset-score-btn" class="control-btn">
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                    <path fill="currentColor" d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
+                </svg>
+                Reset Stats
+            </button>
+            <button id="share-btn" class="control-btn">
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                    <path fill="currentColor" d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+                </svg>
+                Share
+            </button>
+        </div>
+    </div>
+
+    <!-- Game History Sidebar -->
+    <div id="history-sidebar" class="history-sidebar">
+        <div class="sidebar-header">
+            <h3>📜 Move History</h3>
+            <button id="close-history" class="close-btn">✕</button>
+        </div>
+        <div id="history-list" class="history-list">
+            <p class="empty-history">No moves yet. Start playing!</p>
+        </div>
+    </div>
+
+    <!-- Winner Modal -->
+    <div id="winner-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-icon" id="modal-icon">🏆</div>
+            <h2 id="modal-title">Winner!</h2>
+            <p id="modal-message">Player X wins this round.</p>
+            <div id="achievement-popup" class="achievement-popup" style="display: none;"></div>
+            <div class="modal-buttons">
+                <button id="btn-continue" class="modal-btn continue">
+                    <span>Continue</span>
+                    <span class="btn-shortcut">Enter</span>
+                </button>
+                <button id="btn-exit" class="modal-btn exit">
+                    <span>Exit</span>
+                    <span class="btn-shortcut">Esc</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skins Modal -->
+    <div id="skins-modal" class="modal-overlay">
+        <div class="modal-content skins-modal-content">
+            <h2>🎨 Choose Your Symbols</h2>
+            <div class="skins-grid">
+                <div class="skin-option" data-skin="classic">
+                    <div class="skin-preview">
+                        <span class="skin-x">X</span>
+                        <span class="skin-o">O</span>
+                    </div>
+                    <div class="skin-name">Classic</div>
+                </div>
+                <div class="skin-option" data-skin="fire-ice">
+                    <div class="skin-preview">
+                        <span class="skin-x">🔥</span>
+                        <span class="skin-o">❄️</span>
+                    </div>
+                    <div class="skin-name">Fire vs Ice</div>
+                </div>
+                <div class="skin-option" data-skin="sun-moon">
+                    <div class="skin-preview">
+                        <span class="skin-x">🌞</span>
+                        <span class="skin-o">🌙</span>
+                    </div>
+                    <div class="skin-name">Sun vs Moon</div>
+                </div>
+                <div class="skin-option" data-skin="rocket-ufo">
+                    <div class="skin-preview">
+                        <span class="skin-x">🚀</span>
+                        <span class="skin-o">🛸</span>
+                    </div>
+                    <div class="skin-name">Rocket vs UFO</div>
+                </div>
+                <div class="skin-option" data-skin="star-heart">
+                    <div class="skin-preview">
+                        <span class="skin-x">⭐</span>
+                        <span class="skin-o">❤️</span>
+                    </div>
+                    <div class="skin-name">Star vs Heart</div>
+                </div>
+                <div class="skin-option" data-skin="skull-ghost">
+                    <div class="skin-preview">
+                        <span class="skin-x">💀</span>
+                        <span class="skin-o">👻</span>
+                    </div>
+                    <div class="skin-name">Skull vs Ghost</div>
+                </div>
+            </div>
+            <button id="close-skins" class="modal-btn exit">Close</button>
+        </div>
+    </div>
+
+    <!-- Achievements Modal -->
+    <div id="achievements-modal" class="modal-overlay">
+        <div class="modal-content achievements-modal-content">
+            <h2>🏆 Achievements</h2>
+            <div id="achievements-list" class="achievements-list">
+                <!-- Achievements will be populated by JS -->
+            </div>
+            <button id="close-achievements" class="modal-btn exit">Close</button>
+        </div>
+    </div>
+
+    <!-- Achievement Notification Toast -->
+    <div id="achievement-toast" class="achievement-toast">
+        <div class="toast-icon">🏆</div>
+        <div class="toast-content">
+            <div class="toast-title">Achievement Unlocked!</div>
+            <div class="toast-message" id="toast-message"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
