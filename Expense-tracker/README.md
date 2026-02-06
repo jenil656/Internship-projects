@@ -63,7 +63,7 @@
 2. Open `index.html` in any modern web browser
 3. Start adding transactions - no installation or server required
 
-**Note:** Application works completely offline using browser's localStorage.
+- Application works completely offline using browser's localStorage.
 
 ---
 
@@ -117,3 +117,29 @@
 - **Responsive design** works on all screen sizes
 - **Dark/Light modes** with smooth transitions
 - **Accessibility** features included
+
+##  Live Demo
+- Before contributing, explore the live version of the project to understand features, UI flow, and behavior:
+
+  - Live Demo (GitHub Pages)
+  ```bash
+  https://jenil656.github.io/Internship-projects/Expense-tracker/
+  ```
+  - This helps ensure your changes align with the existing design and functionality.
+
+## How to Contribute
+
+- 1. Fork the Repository
+     - Click the Fork button on GitHub to create your own copy of the project.
+
+- 2. Clone Your Fork
+  ```bash
+        git clone https://github.com/your-username/Internship-projects.git
+        cd Internship-projects/weather 
+    ```
+- 3. Create a New Branch
+    - Always work on a separate branch:
+      ```bash
+          git checkout -b feature/your-feature-name
+      ```
+
