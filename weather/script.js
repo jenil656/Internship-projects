@@ -1,6 +1,7 @@
 // SkyCast - Weather Dashboard JavaScript
+
 // API Configuration
-const apiKey = "38e6e8e289230edc931d8019201a1cc4"; // Replace with your OpenWeatherMap API key
+const apiKey = '38e6e8e289230edc931d8019201a1cc4'; // Replace with your OpenWeatherMap API key
 let currentUnit = 'metric'; // metric = Celsius, imperial = Fahrenheit
 let currentCity = '';
 let currentCoords = { lat: null, lon: null };
@@ -271,10 +272,6 @@ async function fetchWeather(city) {
         toggleLoader(false);
     }
 }
-
-
-i have this code for get weather now tell me that any needs t change this code
-
 
 async function fetchWeatherByCoords(lat, lon) {
     toggleLoader(true);
