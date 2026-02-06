@@ -241,37 +241,37 @@ function getUserLocation() {
 async function fetchWeather(city) {
     toggleLoader(true);
     hideError();
-    
+
     try {
-        const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${currentUnit}`;
+        const weatherUrl = `${CONFIG.BASE_URL}/weather?q=${encodeURIComponent(city)}&appid=${CONFIG.WEATHER_API_KEY}&units=${currentUnit}`;
         const response = await fetch(weatherUrl);
-        
+
         if (!response.ok) {
-            throw new Error('City not found');
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'City not found');
         }
-        
+
         const data = await response.json();
         weatherData = data;
         currentCity = city;
         currentCoords = { lat: data.coord.lat, lon: data.coord.lon };
-        
-        // Fetch additional data
+
         await Promise.all([
             fetchForecastData(data.coord.lat, data.coord.lon),
             fetchAirQuality(data.coord.lat, data.coord.lon),
             fetchUVIndex(data.coord.lat, data.coord.lon)
         ]);
-        
-        // Update UI
+
         updateWeatherUI(data);
         updateDynamicTheme(data.main.temp);
-        
+
     } catch (error) {
         showError(error.message);
     } finally {
         toggleLoader(false);
     }
 }
+
 
 async function fetchWeatherByCoords(lat, lon) {
     toggleLoader(true);
