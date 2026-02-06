@@ -83,10 +83,28 @@ The quiz covers three main areas of web development:
 - CSS: Styling, layout, and design
 - JavaScript: Programming concepts and DOM manipulation
 
-## Installation
+##  Live Demo
+- Before contributing, explore the live version of the project to understand features, UI flow, and behavior:
 
-No installation required. Simply download the files and open index.html in your web browser.
+  - Live Demo (GitHub Pages)
+  ```bash
+  https://jenil656.github.io/Internship-projects/Interactive-quize/
+  ```
+  - This helps ensure your changes align with the existing design and functionality.
 
-## Credits
+## How to Contribute
 
-Created as part of Unified Mentor internship project.
+- 1. Fork the Repository
+     - Click the Fork button on GitHub to create your own copy of the project.
+
+- 2. Clone Your Fork
+  ```bash
+        git clone https://github.com/your-username/Internship-projects.git
+        cd Internship-projects/weather 
+    ```
+- 3. Create a New Branch
+    - Always work on a separate branch:
+      ```bash
+          git checkout -b feature/your-feature-name
+      ```
+
