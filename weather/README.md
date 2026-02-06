@@ -2,7 +2,7 @@
 
 A feature-rich, modern weather application with stunning UI/UX, advanced animations, and comprehensive weather data visualization.
 
-## 🌟 Features
+## Features
 
 ### Core Features
 - **Live Weather Data**: Real-time weather information from OpenWeatherMap API
