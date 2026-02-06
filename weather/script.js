@@ -1,5 +1,4 @@
 // SkyCast - Weather Dashboard JavaScript
-//38e6e8e289230edc931d8019201a1cc4
 // API Configuration
 const apiKey = "38e6e8e289230edc931d8019201a1cc4"; // Replace with your OpenWeatherMap API key
 let currentUnit = 'metric'; // metric = Celsius, imperial = Fahrenheit
@@ -241,36 +240,40 @@ function getUserLocation() {
 async function fetchWeather(city) {
     toggleLoader(true);
     hideError();
-
+    
     try {
-        const weatherUrl = `${CONFIG.BASE_URL}/weather?q=${encodeURIComponent(city)}&appid=${CONFIG.WEATHER_API_KEY}&units=${currentUnit}`;
+        const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${currentUnit}`;
         const response = await fetch(weatherUrl);
-
+        
         if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message || 'City not found');
+            throw new Error('City not found');
         }
-
+        
         const data = await response.json();
         weatherData = data;
         currentCity = city;
         currentCoords = { lat: data.coord.lat, lon: data.coord.lon };
-
+        
+        // Fetch additional data
         await Promise.all([
             fetchForecastData(data.coord.lat, data.coord.lon),
             fetchAirQuality(data.coord.lat, data.coord.lon),
             fetchUVIndex(data.coord.lat, data.coord.lon)
         ]);
-
+        
+        // Update UI
         updateWeatherUI(data);
         updateDynamicTheme(data.main.temp);
-
+        
     } catch (error) {
         showError(error.message);
     } finally {
         toggleLoader(false);
     }
 }
+
+
+i have this code for get weather now tell me that any needs t change this code
 
 
 async function fetchWeatherByCoords(lat, lon) {
