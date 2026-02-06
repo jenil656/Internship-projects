@@ -104,10 +104,29 @@ The "Impossible" difficulty uses the Minimax algorithm to evaluate all possible 
 - **Theme Consistency** - Color-coordinated across all themes
 - **Accessibility** - Focus states, keyboard navigation, reduced motion support
 
-## Browser Compatibility
 
-- Chrome (recommended)
-- Firefox
-- Safari
-- Edge
-- Mobile browsers (iOS Safari, Chrome Mobile)
+##  Live Demo
+- Before contributing, explore the live version of the project to understand features, UI flow, and behavior:
+
+  - Live Demo (GitHub Pages)
+  ```bash
+  https://jenil656.github.io/Internship-projects/tic-tak-toe/
+  ```
+  - This helps ensure your changes align with the existing design and functionality.
+
+## How to Contribute
+
+- 1. Fork the Repository
+     - Click the Fork button on GitHub to create your own copy of the project.
+
+- 2. Clone Your Fork
+  ```bash
+        git clone https://github.com/your-username/Internship-projects.git
+        cd Internship-projects/weather 
+    ```
+- 3. Create a New Branch
+    - Always work on a separate branch:
+      ```bash
+          git checkout -b feature/your-feature-name
+      ```
+
