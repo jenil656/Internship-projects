@@ -18,7 +18,7 @@ A feature-rich weather application with real-time data, interactive maps, and be
 
 **Tech Stack:** HTML5, CSS3, JavaScript ES6+, Chart.js, Leaflet.js, OpenWeatherMap API
 
- **[Live Demo](https://yourusername.github.io/internship-projects/weather-dashboard/)** |  [Source Code](./weather-dashboard)
+ **[Live Demo](https://jenil656.github.io/Internship-projects/weather/)** 
 
 ---
 
@@ -36,11 +36,11 @@ Modern Tic-Tac-Toe with AI opponents, multiple themes, and tournament mode.
 
 **Tech Stack:** HTML5, CSS3, Vanilla JavaScript, Web Audio API
 
- **[Live Demo](https://yourusername.github.io/internship-projects/tic-tac-toe/)** |  [Source Code](./tic-tac-toe)
-
+ **[Live Demo](https://jenil656.github.io/Internship-projects/tic-tak-toe/)**
+ 
 ---
 
-### 3. Interactive Web Quiz
+### 3. Interactive Quiz
 A comprehensive quiz application testing web development knowledge with multiple modes and detailed analytics.
 
 **Key Features:**
@@ -54,7 +54,7 @@ A comprehensive quiz application testing web development knowledge with multiple
 
 **Tech Stack:** HTML5, CSS3, JavaScript ES6+, Local Storage API
 
- **[Live Demo](https://yourusername.github.io/internship-projects/web-quiz/)** |  [Source Code](./web-quiz)
+ **[Live Demo](https://jenil656.github.io/Internship-projects/Interactive-quize/)** 
 
 ---
 
@@ -74,7 +74,7 @@ A full-featured expense management system with budget tracking, data visualizati
 
 **Tech Stack:** HTML5, CSS3, JavaScript ES6+, Chart.js, jsPDF
 
- **[Live Demo](https://yourusername.github.io/internship-projects/expense-tracker/)** | [Source Code](./expense-tracker)
+ **[Live Demo](https://jenil656.github.io/Internship-projects/Expense-tracker/)**
 
 ---
 
@@ -188,7 +188,6 @@ internship-projects/
 ---
 
 ## Author
-
 **Your Name**
 - GitHub: [jenil656](https://github.com/jenil656)
 - LinkedIn: [Jenil Vyas](https://www.linkedin.com/in/jenil-vyas-06ba10373/)
