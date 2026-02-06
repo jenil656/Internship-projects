@@ -1,7 +1,7 @@
 // SkyCast - Weather Dashboard JavaScript
-
+//38e6e8e289230edc931d8019201a1cc4
 // API Configuration
-const apiKey = '38e6e8e289230edc931d8019201a1cc4'; // Replace with your OpenWeatherMap API key
+const apiKey = 'API_KEY'; // Replace with your OpenWeatherMap API key
 let currentUnit = 'metric'; // metric = Celsius, imperial = Fahrenheit
 let currentCity = '';
 let currentCoords = { lat: null, lon: null };
